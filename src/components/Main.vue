@@ -4,12 +4,22 @@
         <router-link to='/login'>Login</router-link>
         <router-link to='/register'>register</router-link>
         <router-link to='/developer'>Developer</router-link>
+        <button @click='logout'>Logout</button>
     </div>
 </template>
 
 <script>
+import firebase from 'firebase'
+
 export default {
-  name: 'Main'
+  name: 'Main',
+  methods: {
+      logout: function(){
+          firebase.auth().signOut().then(result => {
+              this.$router.push('/login')
+          });
+      }
+  }
 }
 </script>
 

@@ -3,6 +3,8 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import './config/firebaseinit'
+import firebase from 'firebase'
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.min.css'
 
@@ -13,11 +15,12 @@ Vue.use(VueMaterial)
 let app;
 /* eslint-disable no-new */
 
-if(!app){
-  app = new Vue({
-    el: '#app',
-    router,
-    render: h => h(App)
-  })
-}
-
+firebase.auth().onAuthStateChanged(user =>{
+  if(!app){
+    app = new Vue({
+      el: '#app',
+      router,
+      render: h => h(App)
+    })
+  }  
+})
