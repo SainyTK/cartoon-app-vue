@@ -8,12 +8,16 @@ import 'vue-material/dist/vue-material.min.css'
 
 Vue.use(VueMaterial)
 
-Vue.config.productionTip = false
+// Vue.config.productionTip = false
 
+let app;
 /* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  router,
-  components: { App },
-  template: '<App/>'
-})
+
+if(!app){
+  app = new Vue({
+    el: '#app',
+    router,
+    render: h => h(App)
+  })
+}
+

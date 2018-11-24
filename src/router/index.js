@@ -1,15 +1,33 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+import Developer from '../components/Developer'
+import Login from '../components/Login'
+import Register from '../components/Register'
+import Main from '../components/Main'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
+      path: '/login',
+      name: 'Login',
+      component: Login
+    },
+    {
+      path: '/register',
+      name: 'Register',
+      component: Register
+    },
+    {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      name: 'Main',
+      component: Main
+    },
+    {
+      path: '/developer',
+      name: 'Developer',
+      component: Developer
     }
   ]
 })
