@@ -12,7 +12,9 @@ export const messages = {
         resetPasswordTitle: 'Reset Password',
         askResetPassword: 'Do you want to reset your password by sending to your email ?',
         cancel: 'Cancel',
-        confirm: 'Confirm'
+        confirm: 'Confirm',
+        confirmPassword: 'Comfirm Password',
+        signUp: 'Sign Up'
     },
     th: {
         email: 'อีเมลล์',
@@ -27,6 +29,8 @@ export const messages = {
         resetPasswordTitle: 'รีเซ็ทรหัสผ่าน',
         askResetPassword: 'คุณต้องการรีเซ็ทรหัสผ่านโดยการส่งไปยังอีเมลล์ของคุณหรือไม่ ?',
         cancel: 'ยกเลิก',
-        confirm: 'ยืนยัน'
+        confirm: 'ยืนยัน',
+        confirmPassword: 'ยืนยันรหัสผ่าน',
+        signUp: 'สมัครสมาชิก'
     }
 }

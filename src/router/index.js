@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Developer from '../components/Developer'
 import LoginView from '../components/LoginView'
-import Register from '../components/Register'
 import Main from '../components/Main'
 import firebase from 'firebase'
 
@@ -14,14 +13,6 @@ let router = new Router({
       path: '/login',
       name: 'Login',
       component: LoginView,
-      meta: {
-        requireGuest: true
-      }
-    },
-    {
-      path: '/register',
-      name: 'Register',
-      component: Register,
       meta: {
         requireGuest: true
       }

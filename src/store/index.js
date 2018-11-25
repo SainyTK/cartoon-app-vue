@@ -11,7 +11,7 @@ export default new Vuex.Store({
         email: '',
         password: '',
         isShowDialog: false,
-        loginPageState: 'login'
+        showLogin: true
     },
     getters: {
         messages : state => {
@@ -40,7 +40,7 @@ export default new Vuex.Store({
             state.isShowDialog = isShowDialog
         },
         toggleLogin : state => {
-            state.loginPageState = state.loginPageState == 'login' ? 'register' : 'login';
+            state.showLogin = !state.showLogin
         }
     },
     actions: {
@@ -60,7 +60,17 @@ export default new Vuex.Store({
             context.commit('showDialog',isShowDialog)
         },
         toggleLoginPage : context => {
+            context.commit('changeEmail','')
+            context.commit('changePassword','')
             context.commit('toggleLogin')
+        },
+        openDialog : context => {
+            console.log(context.state.isShowDialog)
+            context.commit('showDialog',true)
+        },
+        closeDialog : context => {
+            console.log(context.state.isShowDialog)
+            context.commit('showDialog',false)
         }
     }
 })

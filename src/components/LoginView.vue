@@ -1,8 +1,8 @@
 <template>
   <div class='container'>
     <md-content>
-        <Login v-if="loginPageState=='login'"/>
-        <Register v-if="loginPageState=='register'"/>
+        <Login v-if='showLogin'/>
+        <Register v-else/>
     </md-content>
     <div class='lang-container'>
       <span v-bind:class='en' value='en' @click='changeLang'>EN</span>
@@ -20,7 +20,7 @@
           </md-tab>
         </md-tabs>
       <md-dialog-actions>
-        <md-button class="md-primary" @click='closeDialog'>{{messages.cancel}}</md-button>
+        <md-button class="md-primary" @click='hideDialog'>{{messages.cancel}}</md-button>
         <md-button class="md-primary" @click='sendResetPassword'>{{messages.confirm}}</md-button>
       </md-dialog-actions>
     </md-dialog>
@@ -31,25 +31,25 @@
 import firebase from 'firebase';
 import Login from './Login';
 import Register from './Register';
-import { mapState,mapGetters } from 'vuex' 
+import { mapState,mapGetters,mapActions } from 'vuex' 
+import { minor } from 'semver';
 
 export default {
   name: 'LoginView',
   data: function() {
     return{
+      isShowLogin:false
     }
   },
   components: {
       Login,
       Register
   },
+  created(){
+    console.log(this.showLogin)
+    this.hideDialog.bind(this)
+  },
   methods: {
-    openDialog: function(e){
-      this.$store.dispatch('changeShowDialog',true)
-    },
-    closeDialog: function(e){
-      this.$store.dispatch('changeShowDialog',false)
-    },
     changeLang: function(e){
       e.preventDefault()
       const lang = this.$store.state.lang
@@ -66,23 +66,31 @@ export default {
           break;
       }
     },
-    sendResetPassword: function(){
+    sendResetPassword: function(e){
       let auth = firebase.auth();
       let emailAddress = this.email;
+      let that = this
       console.log(emailAddress)
       auth.sendPasswordResetEmail(emailAddress).then(function() {
         console.log('reset email')
+        that.hideDialog(e)
       }).catch(function(error) {
         console.log(error)
       });
-
-      this.closeDialog()
     },
     updateEmail: function(e){
         this.$store.dispatch('onChangeEmail',e.target.value)
-    }
+    },    
+    hideDialog: function(e){
+      e.preventDefault()
+      this.closeDialog
+    },
   },
   computed: {
+    ...mapActions({
+        openDialog: 'openDialog',
+        closeDialog: 'closeDialog'
+    }),
     ...mapGetters({
         messages: 'messages'
     }),
@@ -99,8 +107,8 @@ export default {
                 return 'lang-active'
             return 'lang-inactive'
         },
-        loginPageState: state => state.loginPageState
-    }),
+        showLogin: state => state.showLogin
+    })
   }
 }
 </script>
