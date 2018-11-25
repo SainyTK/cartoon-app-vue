@@ -8,20 +8,22 @@ import firebase from 'firebase'
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.min.css'
 import store from './store'
+import VeeValidate from 'vee-validate'
 
+Vue.use(VeeValidate)
 Vue.use(VueMaterial)
 // Vue.config.productionTip = false
 
-let app;
+let app
 /* eslint-disable no-new */
 
-firebase.auth().onAuthStateChanged(user =>{
-  if(!app){
+firebase.auth().onAuthStateChanged(user => {
+  if (!app) {
     app = new Vue({
       el: '#app',
       router,
       store,
       render: h => h(App)
     })
-  }  
+  }
 })

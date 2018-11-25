@@ -4,50 +4,58 @@ import Developer from '../components/Developer'
 import Login from '../components/Login'
 import Register from '../components/Register'
 import Main from '../components/Main'
+import Card from '../components/Carddeverloper'
 import firebase from 'firebase'
 
 Vue.use(Router)
 
 let router = new Router({
-  routes: [
-    {
-      path: '/login',
-      name: 'Login',
-      component: Login,
-      meta: {
-        requireGuest: true
-      }
-    },
-    {
-      path: '/register',
-      name: 'Register',
-      component: Register,
-      meta: {
-        requireGuest: true
-      }
-    },
-    {
-      path: '/',
-      name: 'Main',
-      component: Main,
-      meta: {
-        requireAuth: true
-      }
-    },
-    {
-      path: '/developer',
-      name: 'Developer',
-      component: Developer,
-      meta: {
-        requireAuth: true
-      }
+  routes: [{
+    path: '/login',
+    name: 'Login',
+    component: Login,
+    meta: {
+      requireGuest: true
     }
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component: Register,
+    meta: {
+      requireGuest: true
+    }
+  },
+  {
+    path: '/',
+    name: 'Main',
+    component: Main,
+    meta: {
+      requireAuth: true
+    }
+  },
+  {
+    path: '/developer',
+    name: 'Developer',
+    component: Developer,
+    meta: {
+      requireAuth: true
+    }
+  },
+  {
+    path: '/card',
+    name: 'Card',
+    component: Card,
+    meta: {
+      requireAuth: true
+    }
+  }
   ]
 })
 
 router.beforeEach((to, from, next) => {
-  if(to.matched.some(record => record.meta.requireAuth)) {
-    if(!firebase.auth().currentUser) {
+  if (to.matched.some(record => record.meta.requireAuth)) {
+    if (!firebase.auth().currentUser) {
       next({
         path: '/login',
         query: {
@@ -57,9 +65,9 @@ router.beforeEach((to, from, next) => {
     } else {
       next()
     }
-  } else if (to.matched.some(record => record.meta.requireGuest)){
+  } else if (to.matched.some(record => record.meta.requireGuest)) {
     if (firebase.auth().currentUser) {
-      next ({
+      next({
         path: '/',
         query: {
           redirect: to.fullPath
@@ -72,4 +80,4 @@ router.beforeEach((to, from, next) => {
   next()
 })
 
-export default router;
+export default router

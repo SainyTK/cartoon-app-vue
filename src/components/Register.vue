@@ -4,22 +4,18 @@
             <div class='login-container'>
                 <img src='../../res/img/one_piece_logo.png' alt='one_piece' class='logo_img' />
                 <div class='input-container'>
-                    <md-icon>person</md-icon>
-                    <input type='text' id='input-user' class='input-text' placeholder='Username' />
-                </div>
-                <div class='input-container'>
                     <md-icon>email</md-icon>
                     <input type='text' id='input-password' class='input-text' placeholder='E-mail' />
                 </div>
                 <div class='input-container'>
                     <md-icon>lock_outline</md-icon>
-                    <input type='text' id='input-user' class='input-text' placeholder='Password' />
+                    <input type="password" class='input-text' placeholder="Password" v-model="password" v-validate="'required|min:6|max:35|confirmed'" name="password" />
                 </div>
                 <div class='input-container'>
                     <md-icon>lock_outline</md-icon>
-                    <input type='text' id='input-password' class='input-text' placeholder='Comfirm Password' />
+                    <input type="password" class='input-text' placeholder="Confirm password" v-model="confirmPassword" v-validate="'required|confirmed:password'" name="confirm_password" />
                 </div>
-                <router-link to='/' id='btn-create' class='btn'>Join Now</router-link>
+                <router-link to='#' id='btn-create' class='btn'>Join Now</router-link>
                 <div class='divider'><span class='divider-text'> Or Join us with</span></div>
                 <div class='social-icon-container'>
                     <svg class='social-icon' viewBox="0 0 24 24">
@@ -30,6 +26,7 @@
                     </svg>
                 </div>
             </div>
+
         </md-content>
     </div>
 </template>
@@ -42,10 +39,4 @@ export default {
 
 <style lang="scss" scoped>
 @import "../assets/css/style.css";
-.contaner {
-  display: flex;
-  height: 100vh;
-  align-items: center;
-  justify-content: center;
-}
 </style>

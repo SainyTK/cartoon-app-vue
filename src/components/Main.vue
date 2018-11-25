@@ -14,25 +14,27 @@ import firebase from 'firebase'
 export default {
   name: 'Main',
   methods: {
-      logout: function(){
-          firebase.auth().signOut().then(result => {
-              this.$router.push('/login')
-          });
-      }
+    logout: function () {
+      firebase.auth().signOut().then(result => {
+        this.$router.push('/login')
+      })
+    }
   },
   computed: {
-      messages(){
-          return this.$store.getters.messages
-      }
+    messages () {
+      return this.$store.getters.messages
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-    .contaner{
-        display: flex;
-        height: 100vh;
-        align-items: center;
-        justify-content: center;
-    }
+.contaner {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  width: 400px;
+  max-width: 100%;
+}
 </style>
