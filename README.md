@@ -4,5 +4,5 @@
 [trello](https://trello.com/b/wt8pBFLz/cartoon-app)
 
 ## test user
-email : test@gmail.com
+email : test@gmail.com \n
 password : 123456
