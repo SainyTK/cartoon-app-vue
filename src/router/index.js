@@ -5,6 +5,7 @@ import Login from '../components/Login'
 import Register from '../components/Register'
 import Main from '../components/Main'
 import Card from '../components/Carddeverloper'
+import Cartoon from '../components/Cartoon'
 import firebase from 'firebase'
 
 Vue.use(Router)
@@ -46,6 +47,14 @@ let router = new Router({
     path: '/card',
     name: 'Card',
     component: Card,
+    meta: {
+      requireAuth: true
+    }
+  },
+  {
+    path: '/cartoon',
+    name: 'Cartoon',
+    component: Cartoon,
     meta: {
       requireAuth: true
     }
