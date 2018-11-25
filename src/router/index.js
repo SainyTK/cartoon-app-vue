@@ -4,6 +4,7 @@ import Developer from '../components/Developer'
 import Login from '../components/Login'
 import Register from '../components/Register'
 import Main from '../components/Main'
+import Layout_cartoon from '../components/Layout_cartoon.vue'
 
 Vue.use(Router)
 
@@ -28,6 +29,11 @@ export default new Router({
       path: '/developer',
       name: 'Developer',
       component: Developer
+    },
+    {
+      path: '/layout_cartoon',
+      name: 'Layout_cartoon',
+      component: Layout_cartoon
     }
   ]
 })

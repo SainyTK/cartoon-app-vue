@@ -4,6 +4,7 @@
         <router-link to='/login'>Login</router-link>
         <router-link to='/'>Main</router-link>
         <router-link to='/register'>Register</router-link>
+        <router-link to='/layout_cartoon'>Layout_cartoon</router-link>
     </div>
 </template>
 
