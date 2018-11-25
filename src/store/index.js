@@ -7,7 +7,11 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        lang: 'th'
+        lang: 'th',
+        email: '',
+        password: '',
+        isShowDialog: false,
+        loginPageState: 'login'
     },
     getters: {
         messages : state => {
@@ -25,6 +29,18 @@ export default new Vuex.Store({
         },
         toEng : state => {
             state.lang = 'en'
+        },
+        changeEmail : (state, emailInput) => {
+            state.email = emailInput
+        },
+        changePassword : (state, passwordInput) => {
+            state.password = passwordInput
+        },
+        showDialog : (state, isShowDialog)=>{
+            state.isShowDialog = isShowDialog
+        },
+        toggleLogin : state => {
+            state.loginPageState = state.loginPageState == 'login' ? 'register' : 'login';
         }
     },
     actions: {
@@ -33,6 +49,18 @@ export default new Vuex.Store({
         },
         toEng : context => {
             context.commit('toEng')
+        },
+        onChangeEmail : (context, emailInput) => {
+            context.commit('changeEmail',emailInput)
+        },
+        onChangePassword : (context, passwordInput) => {
+            context.commit('changePassword',passwordInput)
+        },
+        changeShowDialog : (context, isShowDialog) => {
+            context.commit('showDialog',isShowDialog)
+        },
+        toggleLoginPage : context => {
+            context.commit('toggleLogin')
         }
     }
 })
