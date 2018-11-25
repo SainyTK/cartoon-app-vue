@@ -15,7 +15,7 @@
         </svg>
           <input type='password' id='input-password' class='input-text' v-bind:placeholder='`${messages.password}`' v-model='password'/>
         </div>
-        <span class='forget-password'>{{this.messages.forgetPassword}}</span>
+        <span class='forget-password' @click='openDialog'>{{this.messages.forgetPassword}}</span>
         <md-button id='btn-login' class='btn' @click='login'>{{messages.login}}</md-button>
         <md-button id='btn-register' class='btn'><router-link to='/register' style='color:white'>{{messages.register}}</router-link></md-button>
         <div class='divider'><span class='divider-text'> {{messages.or}} </span></div>
@@ -34,6 +34,21 @@
       <span>|</span>
       <span v-bind:class='th' value='th' @click='changeLang'>TH</span>
     </div>
+    <md-dialog :md-active.sync="showDialog" class='dialog-container'>
+      <md-dialog-title>{{messages.resetPasswordTitle}}</md-dialog-title>
+        <md-tabs>
+          <md-tab>
+             <p>{{messages.askResetPassword}}</p>
+              <div id='forget-password-container' class='input-container'>
+                <input type='email' class='input-text' v-bind:placeholder='`${messages.email}`' v-model='email'/>
+              </div>
+          </md-tab>
+        </md-tabs>
+      <md-dialog-actions>
+        <md-button class="md-primary" @click='closeDialog'>{{messages.cancel}}</md-button>
+        <md-button class="md-primary" @click='sendResetPassword'>{{messages.confirm}}</md-button>
+      </md-dialog-actions>
+    </md-dialog>
   </div>
 </template>
 
@@ -47,22 +62,19 @@ export default {
     return{
       email:'',
       password:'',
+      showDialog:false
     }
   },
   methods: {
     login :function(e){
-      console.log(this.email)
-      console.log(this.password)
       firebase.auth().signInWithEmailAndPassword(this.email,this.password).then(result => {
         this.$router.push('/')
       },error => {
         var errorCode = error.code;
         var errorMessage = error.message;
-        var email = error.email;
         var credential = error.credential;
         console.log(errorCode)
         console.log(errorMessage)
-        console.log(email)
       })
       e.preventDefault()
     },
@@ -74,11 +86,9 @@ export default {
       },error => {
         var errorCode = error.code;
         var errorMessage = error.message;
-        var email = error.email;
         var credential = error.credential;
         console.log(errorCode)
         console.log(errorMessage)
-        console.log(email)
       });
       e.preventDefault()
     },
@@ -90,13 +100,29 @@ export default {
       },error => {
         var errorCode = error.code;
         var errorMessage = error.message;
-        var email = error.email;
         var credential = error.credential;
         console.log(errorCode)
         console.log(errorMessage)
-        console.log(email)
       });
       e.preventDefault()
+    },
+    sendResetPassword: function(){
+      let auth = firebase.auth();
+      let emailAddress = this.email;
+
+      auth.sendPasswordResetEmail(emailAddress).then(function() {
+        console.log('reset email')
+      }).catch(function(error) {
+        console.log(error)
+      });
+
+      this.closeDialog()
+    },
+    openDialog: function(e){
+      this.showDialog = true;
+    },
+    closeDialog: function(e){
+      this.showDialog = false;
     },
     changeLang: function(e){
       e.preventDefault()
@@ -196,13 +222,17 @@ export default {
     border: none;
     color: #fff;
     margin-left: 5px;
-    text-transform: capitalize
   }
   .input-text:focus{
     outline-width: 0
   }
   .input-text::placeholder{
     color:#cecece;
+  }
+  #reset-password-container{
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 100%;
+    margin:0
   }
   .forget-password{
     color: #fff;
@@ -251,5 +281,8 @@ export default {
     border-radius: 18px;
     padding: 6px;
     margin:10px;
+  }
+  .dialog-container{
+    background: #fff;
   }
 </style>

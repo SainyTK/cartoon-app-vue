@@ -1,7 +1,7 @@
 <template>
     <div class='container'>
         <h1>Main Page</h1>
-        <router-link to='/login'>Login</router-link>
+        <router-link to='/login'>{{messages.login}}</router-link>
         <router-link to='/register'>register</router-link>
         <router-link to='/developer'>Developer</router-link>
         <button @click='logout'>Logout</button>
@@ -18,6 +18,11 @@ export default {
           firebase.auth().signOut().then(result => {
               this.$router.push('/login')
           });
+      }
+  },
+  computed: {
+      messages(){
+          return this.$store.getters.messages
       }
   }
 }
