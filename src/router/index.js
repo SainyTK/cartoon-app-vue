@@ -4,6 +4,7 @@ import Developer from '../components/Developer'
 import Login from '../components/Login'
 import Register from '../components/Register'
 import Main from '../components/Main'
+import Card from '../components/Carddeverloper'
 
 Vue.use(Router)
 
@@ -28,6 +29,10 @@ export default new Router({
       path: '/developer',
       name: 'Developer',
       component: Developer
+    },{
+      path:'/carddeveloper',
+      name: 'Carddeveloper',
+      component:Card
     }
   ]
 })

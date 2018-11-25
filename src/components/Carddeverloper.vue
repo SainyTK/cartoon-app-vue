@@ -1,16 +1,42 @@
 <template>
-    <div>
-  <b-card title="Card Title"
-          img-src="https://picsum.photos/600/300/?image=25"
-          img-alt="Image"
-          img-top
-          tag="article"
-          style="max-width: 20rem;"
-          class="mb-2">
-    <p class="card-text">
-      Some quick example text to build on the card title and make up the bulk of the card's content.
-    </p>
-    <b-button href="#" variant="primary">Go somewhere</b-button>
-  </b-card>
-</div>
+  <div>
+    <md-card md-with-hover>
+      <md-card-media >
+        <img src="../../res/img/DSC_0015.jpg" alt="People">
+
+      </md-card-media>
+        
+      <md-card-header>
+        <div class="md-title">TANAKORN KARORD</div>
+        <div class="md-subhead">Project Manager</div>
+      </md-card-header>
+      <md-card-content>
+        
+      </md-card-content>
+    </md-card>
+
+  </div>
 </template>
+
+
+
+<style lang="scss" scoped>
+  .md-card {
+    width: 170px;
+    margin: 5px;
+    display: inline-block;
+    padding: 0%;
+    vertical-align: top;
+    
+    }
+    
+
+</style>
+
+<script>
+export default {
+    name: 'carddeverloper'
+}
+</script>
+
+
