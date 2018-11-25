@@ -7,7 +7,7 @@
       </md-card-media>
         
       <md-card-header>
-        <div class="md-title">TANAKORN KARORD</div>
+        <div class="md-title">TANAKORN</div>
         <div class="md-subhead">Project Manager</div>
       </md-card-header>
       <md-card-content>
