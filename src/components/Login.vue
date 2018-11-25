@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class='container'>
     <md-content>
       <div class='login-container'>
         <img src='../../res/img/one_piece_logo.png' alt='one_piece' class='logo_img'/>
@@ -7,18 +7,18 @@
           <svg class='form-icon' viewBox="0 0 24 24">
             <path fill="#fff" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
           </svg>
-          <input type='email' id='input-user' class='input-text' placeholder='Email' v-model='email'/>
+          <input type='email' id='input-user' class='input-text' v-bind:placeholder='`${messages.email}`' v-model='email'/>
         </div>
         <div class='input-container'>
           <svg class='form-icon' viewBox="0 0 24 24">
             <path fill="#fff" d="M12,17C10.89,17 10,16.1 10,15C10,13.89 10.89,13 12,13A2,2 0 0,1 14,15A2,2 0 0,1 12,17M18,20V10H6V20H18M18,8A2,2 0 0,1 20,10V20A2,2 0 0,1 18,22H6C4.89,22 4,21.1 4,20V10C4,8.89 4.89,8 6,8H7V6A5,5 0 0,1 12,1A5,5 0 0,1 17,6V8H18M12,3A3,3 0 0,0 9,6V8H15V6A3,3 0 0,0 12,3Z" />
         </svg>
-          <input type='password' id='input-password' class='input-text' placeholder='Password' v-model='password'/>
+          <input type='password' id='input-password' class='input-text' v-bind:placeholder='`${messages.password}`' v-model='password'/>
         </div>
-        <span class='forget-password'>Forget your password ?</span>
-        <md-button id='btn-login' class='btn' @click='login'>Login</md-button>
-        <md-button id='btn-register' class='btn'><router-link to='/register' style='color:white'>Register</router-link></md-button>
-        <div class='divider'><span class='divider-text'> Or </span></div>
+        <span class='forget-password'>{{this.messages.forgetPassword}}</span>
+        <md-button id='btn-login' class='btn' @click='login'>{{messages.login}}</md-button>
+        <md-button id='btn-register' class='btn'><router-link to='/register' style='color:white'>{{messages.register}}</router-link></md-button>
+        <div class='divider'><span class='divider-text'> {{messages.or}} </span></div>
         <div class='social-icon-container'>
           <svg id='facebook-auth' @click='facebookAuth' class='social-icon' viewBox="0 0 24 24">
             <path fill="#fff" d="M17,2V2H17V6H15C14.31,6 14,6.81 14,7.5V10H14L17,10V14H14V22H10V14H7V10H10V6A4,4 0 0,1 14,2H17Z" />
@@ -29,18 +29,24 @@
         </div>
       </div>
     </md-content>
+    <div class='lang-container'>
+      <span v-bind:class='en' value='en' @click='changeLang'>EN</span>
+      <span>|</span>
+      <span v-bind:class='th' value='th' @click='changeLang'>TH</span>
+    </div>
   </div>
 </template>
 
 <script>
 import firebase from 'firebase';
+import { mapState, mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'Login',
   data: function() {
     return{
       email:'',
-      password:''
+      password:'',
     }
   },
   methods: {
@@ -91,18 +97,73 @@ export default {
         console.log(email)
       });
       e.preventDefault()
+    },
+    changeLang: function(e){
+      e.preventDefault()
+      const lang = this.$store.state.lang
+      switch(e.target.innerHTML){
+        case 'EN':
+          if(lang != 'en'){
+            this.$store.dispatch('toEng')
+          }
+          break;
+        case 'TH':
+          if(lang != 'th'){
+            this.$store.dispatch('toThai')
+          }
+          break;
+      }
+    }
+  },
+  computed: {
+    messages(){
+      return this.$store.getters.messages
+    },
+    en(){
+      if(this.$store.state.lang == 'en')
+        return 'lang-active'
+      return 'lang-inactive'
+    },
+    th(){
+      if(this.$store.state.lang == 'th')
+        return 'lang-active'
+      return 'lang-inactive'
     }
   }
 }
 </script>
 
 <style lang='scss' scoped>
-  .md-content{
+  .container{
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
     height: 100vh;
     background: #87BCBF;
+    padding: 10px 20px 10px 20px;
+  }
+  .lang-container{
+    display: flex;
+    font-size: 10px;
+    color: #fff;
+    height: 14px;
+    width: 100%;
+    text-align: right;
+    justify-content: flex-end
+  }
+  .lang-active{
+    cursor: pointer;
+    color: #fff;
+  }
+  .lang-inactive{
+    cursor: pointer;
+    color: #cecece;
+  }
+  .md-content{
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    // height: 100vh;
   }
   .login-container{
     display: flex;
@@ -111,7 +172,6 @@ export default {
     width: 100%;
     justify-content: center;
     align-items: center;
-    padding: 30px;
   }
   .logo_img{
     margin-bottom: 50px;
@@ -136,6 +196,7 @@ export default {
     border: none;
     color: #fff;
     margin-left: 5px;
+    text-transform: capitalize
   }
   .input-text:focus{
     outline-width: 0
@@ -149,6 +210,7 @@ export default {
     width: 100%;
     text-align: center;
     margin-bottom: 10px;
+    text-transform: capitalize
   }
   .btn{
     width: 85%;
@@ -172,6 +234,7 @@ export default {
     margin-bottom: 20px;
   }
   .divider-text{
+    text-transform: center;
     font-size:16px;
     padding: 0px 16px;
     color: #fff;

@@ -7,9 +7,9 @@ import './config/firebaseinit'
 import firebase from 'firebase'
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.min.css'
+import store from './store'
 
 Vue.use(VueMaterial)
-
 // Vue.config.productionTip = false
 
 let app;
@@ -20,6 +20,7 @@ firebase.auth().onAuthStateChanged(user =>{
     app = new Vue({
       el: '#app',
       router,
+      store,
       render: h => h(App)
     })
   }  
