@@ -30,7 +30,7 @@
 
     <div class='divider'></div>
     <md-content>
-        
+        <CardDeveloper/>
     </md-content>
   </div>
 
@@ -38,7 +38,8 @@
 
 <script>
 import firebase from 'firebase';
-import { mapState,mapGetters } from 'vuex'
+import { mapState,mapGetters } from 'vuex';
+import CardDeveloper from './CardDeveloper';
 
   export default {
     name: 'Main',
@@ -48,6 +49,9 @@ import { mapState,mapGetters } from 'vuex'
       userName: '',
       userProfileImage: ''
     }),
+    components: {
+        CardDeveloper
+    },
     created(){
         let user = firebase.auth().currentUser
         this.userName = this.hasDisplayName() ? user.displayName : user.email.toUpperCase().charAt(0)
