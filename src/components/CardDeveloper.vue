@@ -1,13 +1,13 @@
 <template>
-  <div>
+  <div class='container'>
     <md-card md-with-hover>
       <md-card-media >
-        <img src='../../res/img/DSC_0015.jpg' alt="People">
+        <img :src='profileImage' alt="People">
       </md-card-media>
         
       <md-card-header>
-        <div class="md-title">TANAKORN</div>
-        <div class="md-subhead">Project Manager</div>
+        <div class="md-title">{{name}}</div>
+        <div class="md-subhead">{{role}}</div>
       </md-card-header>
       <md-card-content>
         
@@ -19,17 +19,45 @@
 
 <script>
 export default {
-    name: 'CardDeveloper'
+    name: 'CardDeveloper',
+    props: ['developer'],
+    data(){
+      return {
+        name:'',
+        role:'',
+      }
+    },
+    created(){
+      this.name = this.developer.name;
+      this.role = this.developer.role;
+    },
+    computed: {
+      profileImage() {
+        return require('../../res/img/'+this.developer.profileImage)
+      }
+    }
 }
 </script>
 
 <style lang="scss" scoped>
   .md-card {
-    width: 170px;
-    margin: 5px;
+    background-color: #fff;
+    width:100%;
+    
+      margin: 5px;
+   //height: 85%;
     display: inline-block;
     padding: 0%;
-    vertical-align: top;
+    vertical-align: top;    
     
+    }
+    .container{
+    width:45%;
+    max-width: 200px;
+    margin: 5px;
+    height: fit-content;
+    }
+    .md-title{
+      font-size: 15px;
     }
 </style>

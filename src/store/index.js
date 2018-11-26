@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import 'es6-promise/auto'
 import {messages} from '../res/messages'
+import {developerInfo} from '../res/developerInfo'
 
 Vue.use(Vuex)
 
@@ -11,7 +12,7 @@ export default new Vuex.Store({
         email: '',
         password: '',
         isShowDialog: false,
-        showLogin: true
+        showLogin: true,
     },
     getters: {
         messages : state => {
@@ -20,6 +21,14 @@ export default new Vuex.Store({
                     return messages.en
                 case 'th':
                     return messages.th
+            }
+        },
+        developers : state => {
+            switch(state.lang){
+                case 'en':
+                    return developerInfo.en
+                case 'th':
+                    return developerInfo.th
             }
         }
     },

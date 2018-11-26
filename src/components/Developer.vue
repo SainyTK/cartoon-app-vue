@@ -4,7 +4,7 @@
       <md-button class="md-icon-button" @click="showNavigation = true">
         <md-icon>menu</md-icon>
       </md-button>
-      <span class="md-title">Developer</span>
+      <span class="md-title">{{messages.developer}}</span>
 
       <div class="md-toolbar-section-end">
         <md-button class="md-icon-button" @click='toHome'>
@@ -21,7 +21,7 @@
           </md-avatar>
           <div class='tap_user2'>
             <span class='name_user'>{{userName}}</span>
-            <span class='logout' @click='signout'>Logout</span>
+            <span class='logout' @click='signout'>{{messages.logout}}</span>
           </div>
       </div>
 
@@ -29,9 +29,10 @@
     </md-drawer>
 
     <div class='divider'></div>
-    <md-content>
-        <CardDeveloper/>
-    </md-content>
+
+    <div class="content"> 
+        <CardDeveloper v-for="developer in developers" :key="developer.name" :developer='developer'/>             
+    </div>
   </div>
 
 </template>
@@ -53,6 +54,8 @@ import CardDeveloper from './CardDeveloper';
         CardDeveloper
     },
     created(){
+        console.log(this.developers)
+        console.log(this.messages)
         let user = firebase.auth().currentUser
         this.userName = this.hasDisplayName() ? user.displayName : user.email.toUpperCase().charAt(0)
         this.userProfileImage = user.photoURL
@@ -75,6 +78,12 @@ import CardDeveloper from './CardDeveloper';
             this.$router.push('/')
         }
     },
+    computed: {
+        ...mapGetters({
+            messages: 'messages',
+            developers: 'developers'
+        })
+    }
   }
 </script>
 
@@ -99,11 +108,11 @@ import CardDeveloper from './CardDeveloper';
     color: #000808; 
     font-weight:bold; 
   }
-  .md-content {
+  .card-container {
     margin-right: 17px;
     margin-left: 17px;
     margin-bottom: 20px;
-    height: 100vh;
+    overflow-y:auto;
   }
   .md-icon{
       color: #f8fafa;
@@ -163,6 +172,12 @@ import CardDeveloper from './CardDeveloper';
   }
   .md-avatar{
     margin: 15px;
+  }
+  .content{
+      display: flex;
+      flex-wrap: wrap;
+      overflow: scroll;
+      height: 85%
   }
   
 </style>
