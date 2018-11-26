@@ -21,7 +21,7 @@
           </md-avatar>
           <div class='tap_user2'>
             <span class='name_user'>{{userName}}</span>
-            <span class='logout' @click='signout'>Logout</span>
+            <span class='logout' @click='signout'>{{messages.logout}}</span>
           </div>
       </div>
     </md-drawer>
@@ -74,6 +74,17 @@ import CardDeveloper from './CardDeveloper';
         toHome: function(e){
             this.$router.push('/')
         }
+    },
+    computed: {
+       ...mapGetters({
+        messages: 'messages'
+      }),
+      ...mapState({
+        lang: state => {
+           console.log('lang' + state.lang);
+           return state.lang
+        }
+      })
     },
   }
 </script>

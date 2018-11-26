@@ -4,7 +4,7 @@
       <md-button class="md-icon-button" @click="showNavigation = true">
         <md-icon>menu</md-icon>
       </md-button>
-      <span class="md-title">Episode 1</span>
+      <span class="md-title">{{messages.ep}} 1</span>
 
       <div class="md-toolbar-section-end">
         <md-button class="md-icon-button" @click='toDevelopers'>
@@ -21,14 +21,14 @@
           </md-avatar>
           <div class='tap_user2'>
             <span class='name_user'>{{userName}}</span>
-            <span class='logout' @click='signout'>Logout</span>
+            <span class='logout' @click='signout'>{{messages.logout}}</span>
           </div>
       </div>
 
       <div class='divider2'></div>
       <md-list v-for="n in 20" :key="n">
         <md-list-item>
-          <md-button @click="true">Episode {{n}}</md-button>
+          <md-button @click="true">{{messages.ep}} {{n}}</md-button>
         </md-list-item>
         <div class='divider3'></div>
       </md-list>
@@ -45,6 +45,7 @@
 <script>
 import firebase from 'firebase';
 import { mapState,mapGetters } from 'vuex'
+
 
   export default {
     name: 'Main',
@@ -77,6 +78,18 @@ import { mapState,mapGetters } from 'vuex'
             this.$router.push('/developer')
         }
     },
+     computed: {
+       ...mapGetters({
+        messages: 'messages'
+      }),
+      ...mapState({
+        lang: state => {
+           console.log('lang' + state.lang);
+           return state.lang
+        }
+      })
+    }
+
   }
 </script>
 
