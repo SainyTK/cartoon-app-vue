@@ -45,8 +45,6 @@
 <script>
 import firebase from 'firebase';
 import { mapState,mapGetters } from 'vuex'
-
-
   export default {
     name: 'Main',
     data: () => ({
@@ -89,7 +87,6 @@ import { mapState,mapGetters } from 'vuex'
         }
       })
     }
-
   }
 </script>
 

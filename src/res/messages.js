@@ -15,7 +15,12 @@ export const messages = {
         confirm: 'Confirm',
         confirmPassword: 'Comfirm Password',
         signUp: 'Sign Up',
+<<<<<<< HEAD
         ep:'Episode'
+=======
+        ep:'Episode',
+        developer:'Developer'
+>>>>>>> 847e45f78084dff48fc0d481357b24a418b807bf
     },
     th: {
         email: 'อีเมลล์',
@@ -33,6 +38,11 @@ export const messages = {
         confirm: 'ยืนยัน',
         confirmPassword: 'ยืนยันรหัสผ่าน',
         signUp: 'สมัครสมาชิก',
+<<<<<<< HEAD
         ep:'ตอนที่'
+=======
+        ep:'ตอนที่',
+        developer:'ทีมผู้พัฒนา'
+>>>>>>> 847e45f78084dff48fc0d481357b24a418b807bf
     }
 }

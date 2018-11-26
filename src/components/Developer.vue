@@ -4,7 +4,7 @@
       <md-button class="md-icon-button" @click="showNavigation = true">
         <md-icon>menu</md-icon>
       </md-button>
-      <span class="md-title">Developer</span>
+      <span class="md-title">{{messages.developer}}</span>
 
       <div class="md-toolbar-section-end">
         <md-button class="md-icon-button" @click='toHome'>
@@ -26,12 +26,20 @@
       </div>
     </md-drawer>
 
+<<<<<<< HEAD
 
                   <div class="contant">
                     <md-content> <CardDeveloper/><CardDeveloper/><CardDeveloper/>
                     <CardDeveloper/><CardDeveloper/><CardDeveloper/></md-content>
                     
                   </div>
+=======
+    <div class='divider'></div>
+
+    <div class="content"> 
+        <CardDeveloper v-for="developer in developers" :key="developer.name" :developer='developer'/>             
+    </div>
+>>>>>>> 847e45f78084dff48fc0d481357b24a418b807bf
   </div>
 
 </template>
@@ -53,6 +61,8 @@ import CardDeveloper from './CardDeveloper';
         CardDeveloper
     },
     created(){
+        console.log(this.developers)
+        console.log(this.messages)
         let user = firebase.auth().currentUser
         this.userName = this.hasDisplayName() ? user.displayName : user.email.toUpperCase().charAt(0)
         this.userProfileImage = user.photoURL
@@ -76,6 +86,7 @@ import CardDeveloper from './CardDeveloper';
         }
     },
     computed: {
+<<<<<<< HEAD
        ...mapGetters({
         messages: 'messages'
       }),
@@ -86,6 +97,13 @@ import CardDeveloper from './CardDeveloper';
         }
       })
     },
+=======
+        ...mapGetters({
+            messages: 'messages',
+            developers: 'developers'
+        })
+    }
+>>>>>>> 847e45f78084dff48fc0d481357b24a418b807bf
   }
 </script>
 
@@ -110,11 +128,11 @@ import CardDeveloper from './CardDeveloper';
     color: #000808; 
     font-weight:bold; 
   }
-  .md-content {
+  .card-container {
     margin-right: 17px;
     margin-left: 17px;
     margin-bottom: 20px;
-    height: 100vh;
+    overflow-y:auto;
   }
   .md-icon{
       color: #f8fafa;
@@ -175,6 +193,7 @@ import CardDeveloper from './CardDeveloper';
   .md-avatar{
     margin: 15px;
   }
+<<<<<<< HEAD
   .md-content{
     display: flex;
     flex-wrap: wrap;
@@ -185,5 +204,13 @@ import CardDeveloper from './CardDeveloper';
       height: 50%;
   }
  
+=======
+  .content{
+      display: flex;
+      flex-wrap: wrap;
+      overflow: scroll;
+      height: 85%
+  }
+>>>>>>> 847e45f78084dff48fc0d481357b24a418b807bf
   
 </style>
