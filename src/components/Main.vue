@@ -7,8 +7,8 @@
       <span class="md-title">Episode 1</span>
 
       <div class="md-toolbar-section-end">
-        <md-button class="md-icon-button" @click="true">
-         <md-icon>home</md-icon>
+        <md-button class="md-icon-button" @click='toDevelopers'>
+         <md-icon>group</md-icon>
         </md-button> 
       </div>
     </md-toolbar>
@@ -26,45 +26,9 @@
       </div>
 
       <div class='divider2'></div>
-      <md-list>
+      <md-list v-for="n in 20" :key="n">
         <md-list-item>
-          <md-button @click="true">Episode 1</md-button>
-        </md-list-item>
-        <div class='divider3'></div>
-        <md-list-item>
-          <md-button @click="true">Episode 2</md-button>
-        </md-list-item>
-        <div class='divider3'></div>
-        <md-list-item>
-          <md-button @click="true">Episode 3</md-button>
-        </md-list-item>
-        <div class='divider3'></div>
-        <md-list-item>
-          <md-button @click="true">Episode 4</md-button>
-        </md-list-item>
-        <div class='divider3'></div>
-        <md-list-item>
-          <md-button @click="true">Episode 5</md-button>
-        </md-list-item>
-        <div class='divider3'></div>
-        <md-list-item>
-            <md-button @click="true">Episode 6</md-button>
-        </md-list-item>
-        <div class='divider3'></div>
-        <md-list-item>
-          <md-button @click="true">Episode 7</md-button>
-        </md-list-item>
-        <div class='divider3'></div>
-        <md-list-item>
-         <md-button @click="true" >Episode 8</md-button>
-        </md-list-item>
-        <div class='divider3'></div>
-        <md-list-item>
-          <md-button @click="true" >Episode 9</md-button>
-        </md-list-item>
-        <div class='divider3'></div>
-        <md-list-item>
-          <md-button @click="true">Episode 10</md-button>
+          <md-button @click="true">Episode {{n}}</md-button>
         </md-list-item>
         <div class='divider3'></div>
       </md-list>
@@ -108,12 +72,18 @@ import { mapState,mapGetters } from 'vuex'
         },
         hasDisplayName: function(){
             return !!firebase.auth().currentUser.displayName
+        },
+        toDevelopers: function(e){
+            this.$router.push('/developer')
         }
     },
   }
 </script>
 
 <style lang="scss" scoped>
+  .md-toolbar{
+      box-shadow: none
+  }
   .page-container {
     overflow: hidden;
     height: 100vh;
