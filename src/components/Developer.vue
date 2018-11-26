@@ -26,20 +26,11 @@
       </div>
     </md-drawer>
 
-<<<<<<< HEAD
-
-                  <div class="contant">
-                    <md-content> <CardDeveloper/><CardDeveloper/><CardDeveloper/>
-                    <CardDeveloper/><CardDeveloper/><CardDeveloper/></md-content>
-                    
-                  </div>
-=======
     <div class='divider'></div>
 
     <div class="content"> 
         <CardDeveloper v-for="developer in developers" :key="developer.name" :developer='developer'/>             
     </div>
->>>>>>> 847e45f78084dff48fc0d481357b24a418b807bf
   </div>
 
 </template>
@@ -86,24 +77,11 @@ import CardDeveloper from './CardDeveloper';
         }
     },
     computed: {
-<<<<<<< HEAD
-       ...mapGetters({
-        messages: 'messages'
-      }),
-      ...mapState({
-        lang: state => {
-           console.log('lang' + state.lang);
-           return state.lang
-        }
-      })
-    },
-=======
         ...mapGetters({
             messages: 'messages',
             developers: 'developers'
         })
     }
->>>>>>> 847e45f78084dff48fc0d481357b24a418b807bf
   }
 </script>
 
@@ -193,24 +171,11 @@ import CardDeveloper from './CardDeveloper';
   .md-avatar{
     margin: 15px;
   }
-<<<<<<< HEAD
-  .md-content{
-    display: flex;
-    flex-wrap: wrap;
-    overflow: auto;
-    
-  }
-  .contant{
-      height: 50%;
-  }
- 
-=======
   .content{
       display: flex;
       flex-wrap: wrap;
       overflow: scroll;
       height: 85%
   }
->>>>>>> 847e45f78084dff48fc0d481357b24a418b807bf
   
 </style>

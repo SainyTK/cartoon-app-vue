@@ -1,9 +1,5 @@
 <template>
-<<<<<<< HEAD
-  <div class="container">
-=======
   <div class='container'>
->>>>>>> 847e45f78084dff48fc0d481357b24a418b807bf
     <md-card md-with-hover>
       <md-card-media >
         <img :src='profileImage' alt="People">
@@ -56,16 +52,10 @@ export default {
     
     }
     .container{
-<<<<<<< HEAD
-width:45%;
-    max-width: 200px;
-    margin: 5px;
-=======
     width:45%;
     max-width: 200px;
     margin: 5px;
     height: fit-content;
->>>>>>> 847e45f78084dff48fc0d481357b24a418b807bf
     }
     .md-title{
       font-size: 15px;
