@@ -43,7 +43,7 @@ export default {
   },
   components: {
       Login,
-      Register
+      Register,
   },
   created(){
     console.log(this.showLogin)
