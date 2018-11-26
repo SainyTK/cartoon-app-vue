@@ -192,6 +192,7 @@ import CardDeveloper from './CardDeveloper';
   .md-list-item{
     width: 70%;
   }
+  
   .tap_user{
     display: flex;
     flex-direction: row;
