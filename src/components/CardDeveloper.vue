@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <md-card md-with-hover>
       <md-card-media >
         <img src='../../res/img/DSC_0015.jpg' alt="People">
@@ -25,11 +25,22 @@ export default {
 
 <style lang="scss" scoped>
   .md-card {
-    width: 170px;
-    margin: 5px;
+    background-color: #fff;
+    width:100%;
+    
+      margin: 5px;
+   //height: 85%;
     display: inline-block;
     padding: 0%;
-    vertical-align: top;
+    vertical-align: top;    
     
+    }
+    .container{
+width:45%;
+    max-width: 200px;
+    margin: 5px;
+    }
+    .md-title{
+      font-size: 15px;
     }
 </style>

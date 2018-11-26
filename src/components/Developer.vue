@@ -12,7 +12,7 @@
         </md-button> 
       </div>
     </md-toolbar>
-
+    
     <md-drawer :md-active.sync="showNavigation">
       <div class="tap_user" md-elevation="0">
           <md-avatar class="md-large">
@@ -24,14 +24,14 @@
             <span class='logout' @click='signout'>Logout</span>
           </div>
       </div>
-
-      <div class='divider2'></div>
     </md-drawer>
 
-    <div class='divider'></div>
-    <md-content>
-        <CardDeveloper/>
-    </md-content>
+
+                  <div class="contant">
+                    <md-content> <CardDeveloper/><CardDeveloper/><CardDeveloper/>
+                    <CardDeveloper/><CardDeveloper/><CardDeveloper/></md-content>
+                    
+                  </div>
   </div>
 
 </template>
@@ -164,5 +164,15 @@ import CardDeveloper from './CardDeveloper';
   .md-avatar{
     margin: 15px;
   }
+  .md-content{
+    display: flex;
+    flex-wrap: wrap;
+    overflow: auto;
+    
+  }
+  .contant{
+      height: 50%;
+  }
+ 
   
 </style>
