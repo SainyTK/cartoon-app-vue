@@ -22,6 +22,11 @@
           <div class='tap_user2'>
             <span class='name_user'>{{userName}}</span>
             <span class='logout' @click='signout'>{{messages.logout}}</span>
+            <div class='lang-container'>
+      <span v-bind:class='en' value='en' @click='changeLang'>EN</span>
+      <span>|</span>
+      <span v-bind:class='th' value='th' @click='changeLang'>TH</span>
+    </div>
           </div>
       </div>
     </md-drawer>
@@ -74,13 +79,43 @@ import CardDeveloper from './CardDeveloper';
         },
         toHome: function(e){
             this.$router.push('/')
-        }
+        },
+         changeLang: function(e){
+      e.preventDefault()
+      const lang = this.$store.state.lang
+      switch(e.target.innerHTML){
+        case 'EN':
+          if(lang != 'en'){
+            this.$store.dispatch('toEng')
+          }
+          break;
+        case 'TH':
+          if(lang != 'th'){
+            this.$store.dispatch('toThai')
+          }
+          break;
+      }
+    }
     },
     computed: {
         ...mapGetters({
             messages: 'messages',
             developers: 'developers'
-        })
+        }),
+        ...mapState({
+       
+        en: state => {
+            if(state.lang == 'en')
+                return 'lang-active'
+            return 'lang-inactive'
+        },
+        th: state => {
+            if(state.lang == 'th')
+                return 'lang-active'
+            return 'lang-inactive'
+        },
+      
+    }),
     }
   }
 </script>
@@ -88,6 +123,14 @@ import CardDeveloper from './CardDeveloper';
 <style lang="scss" scoped>
   .md-toolbar{
       box-shadow: none
+  }
+  .lang-active{
+    cursor: pointer;
+    color: #000;
+  }
+  .lang-inactive{
+    cursor: pointer;
+    color: #cecece;
   }
   .page-container {
     overflow: hidden;

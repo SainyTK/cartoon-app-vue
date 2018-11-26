@@ -22,7 +22,13 @@
           <div class='tap_user2'>
             <span class='name_user'>{{userName}}</span>
             <span class='logout' @click='signout'>{{messages.logout}}</span>
+            <div class='lang-container'>
+      <span v-bind:class='en' value='en' @click='changeLang'>EN</span>
+      <span>|</span>
+      <span v-bind:class='th' value='th' @click='changeLang'>TH</span>
+    </div>
           </div>
+          
       </div>
 
       <div class='divider2'></div>
@@ -74,7 +80,23 @@ import { mapState,mapGetters } from 'vuex'
         },
         toDevelopers: function(e){
             this.$router.push('/developer')
-        }
+        },changeLang: function(e){
+      e.preventDefault()
+      const lang = this.$store.state.lang
+      switch(e.target.innerHTML){
+        case 'EN':
+          if(lang != 'en'){
+            this.$store.dispatch('toEng')
+          }
+          break;
+        case 'TH':
+          if(lang != 'th'){
+            this.$store.dispatch('toThai')
+          }
+          break;
+      }
+    }
+        
     },
      computed: {
        ...mapGetters({
@@ -85,7 +107,17 @@ import { mapState,mapGetters } from 'vuex'
            console.log('lang' + state.lang);
            return state.lang
         }
-      })
+      }),
+      en: state => {
+            if(state.lang == 'en')
+                return 'lang-active'
+            return 'lang-inactive'
+        },
+        th: state => {
+            if(state.lang == 'th')
+                return 'lang-active'
+            return 'lang-inactive'
+        },
     }
   }
 </script>
@@ -93,6 +125,14 @@ import { mapState,mapGetters } from 'vuex'
 <style lang="scss" scoped>
   .md-toolbar{
       box-shadow: none
+  }
+  .lang-active{
+    cursor: pointer;
+    color: #000;
+  }
+  .lang-inactive{
+    cursor: pointer;
+    color: #cecece;
   }
   .page-container {
     overflow: hidden;
