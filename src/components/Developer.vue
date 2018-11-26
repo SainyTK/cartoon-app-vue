@@ -216,6 +216,7 @@ import CardDeveloper from './CardDeveloper';
   }
   .content{
       display: flex;
+      justify-content: center;
       flex-wrap: wrap;
       overflow: scroll;
       height: 85%
