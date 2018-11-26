@@ -59,14 +59,13 @@ export default {
     },
     createId : function(e){
         let err = null
+        let that = this
         if(this.password == this.confirmPassword){
-            firebase.auth().createUserWithEmailAndPassword(this.email,this.password).catch(error => {
-                console.log(error)
-                err = error
+            firebase.auth().createUserWithEmailAndPassword(this.email,this.password).then(result=>{
+              that.login(e)
+            },error => {
+              console.log(error)
             })
-            console.log(err)
-            if(err==null)
-            this.login()
         }
         e.preventDefault()
     },
