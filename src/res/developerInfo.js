@@ -2,33 +2,33 @@ export const developerInfo = {
     th: [
         {
             name: 'ธนากร ก้าโหรด',
-            role: 'Project Manager',
+            role: 'ผู้จัดการโครงการ',
             profileImage: 'sai.jpg'
         },
         {
             name: 'มาซรัน ยะมิง',
-            role: 'Project Manager',
+            role: 'นักออกแบบแอปพลิเคชัน',
             profileImage: 'mas.jpg'
         },
         {
             name: 'พีรธัช จิตเที่ยง',
-            role: 'Project Manager',
+            role: 'นักพัฒนา',
             profileImage: 'gof.jpg'
         },
         {
             name: 'รีดูวัน ซูและ',
-            role: 'Project Manager',
+            role: 'โปรแกรมเมอร์',
             profileImage: 'wan.jpg'
         },
         {
             name: 'มูดาเซร์ อาแว',
-            role: 'Project Manager',
+            role: 'นักพัฒนา',
             profileImage: 'say.jpg'
         },
         {
             name: 'ไฟศอล หะยี',
-            role: 'Project Manager',
-            profileImage: 'DSC_0015.jpg'
+            role: 'โปรแกรมเมอร์',
+            profileImage: 'son.jpg'
         },
     ],
     en: [
@@ -39,28 +39,28 @@ export const developerInfo = {
         },
         {
             name: 'Masrun Yaming',
-            role: 'Project Manager',
+            role: 'User Interface Design',
             profileImage: 'mas.jpg'
         },
         {
             name: 'Phirathat Jittieng',
-            role: 'Project Manager',
+            role: 'Developer',
             profileImage: 'gof.jpg'
         },
         {
             name: 'Riduwan Soolaeh',
-            role: 'Project Manager',
+            role: 'Programmer',
             profileImage: 'wan.jpg'
         },
         {
             name: 'Mudasay Awae',
-            role: 'Project Manager',
+            role: 'Developer',
             profileImage: 'say.jpg'
         },
         {
             name: 'Faisol Hayee',
-            role: 'Project Manager',
-            profileImage: 'DSC_0015.jpg'
+            role: 'Programmer',
+            profileImage: 'son.jpg'
         },
     ]
 }
