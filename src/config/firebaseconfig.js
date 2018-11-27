@@ -1,8 +1,8 @@
 export default {
-    apiKey: "AIzaSyBbe1-OD8rgjSgvT0TfpEz4xlV9ExKoiS8",
-    authDomain: "cartoon-app-vue.firebaseapp.com",
-    databaseURL: "https://cartoon-app-vue.firebaseio.com",
-    projectId: "cartoon-app-vue",
-    storageBucket: "cartoon-app-vue.appspot.com",
-    messagingSenderId: "39547713979"
+    apiKey: "AIzaSyAJ4fUpjtFqhrom0HYV7KVFsQgc_5uA_Eg",
+    authDomain: "cartoon-app-fb2f5.firebaseapp.com",
+    databaseURL: "https://cartoon-app-fb2f5.firebaseio.com",
+    projectId: "cartoon-app-fb2f5",
+    storageBucket: "cartoon-app-fb2f5.appspot.com",
+    messagingSenderId: "596806554680"
 }

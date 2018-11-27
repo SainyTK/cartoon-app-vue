@@ -43,6 +43,7 @@
     <div class='divider'></div>
     <md-content>
       <div class='content_ep'>
+        <img v-for='i in 20' :key='i' :src='imageUrl[i-1]'/>
       </div>
     </md-content>
   </div>
@@ -59,12 +60,15 @@ export default {
     showSidepanel: false,
     userName: '',
     userProfileImage: '',
-    ep: ''
+    ep: '',
+    imageUrl:[]
   }),
   created () {
     let user = firebase.auth().currentUser
     this.userName = this.hasDisplayName() ? user.displayName : user.email.toUpperCase().charAt(0)
     this.userProfileImage = user.photoURL
+
+    this.loadImage()
   },
   methods: {
     signout: function (e) {
@@ -98,8 +102,18 @@ export default {
           }
           break
       }
+    },
+    loadImage: function(){
+      const storage = firebase.storage()
+      for(let i=1;i<=20;i++){
+        let pageNum = (i+'').padStart(3,'0')
+          const pathReference = storage.refFromURL(`gs://cartoon-app-fb2f5.appspot.com/OnePice/ตอนที่ 1/OnePiece01_Page_${pageNum}.jpg`)
+          pathReference.getDownloadURL().then(url => {
+          console.log(url)
+          this.imageUrl[i-1] = url;
+        })
+      }
     }
-
   },
   computed: {
     ...mapGetters({
@@ -215,5 +229,9 @@ export default {
 }
 .md-avatar {
   margin: 15px;
+}
+.content_ep {
+  height: 90%;
+  overflow: scroll;
 }
 </style>
