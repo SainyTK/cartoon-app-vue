@@ -1,31 +1,55 @@
 <template>
   <div class="page-container md-layout-column">
     <md-toolbar class="md-primary">
-      <md-button class="md-icon-button" @click="showNavigation = true">
+      <md-button
+        class="md-icon-button"
+        @click="showNavigation = true"
+      >
         <md-icon>menu</md-icon>
       </md-button>
       <span class="md-title">{{messages.developer}}</span>
 
       <div class="md-toolbar-section-end">
-        <md-button class="md-icon-button" @click='toHome'>
+        <md-button
+          class="md-icon-button"
+          @click='toHome'
+        >
           <md-icon>home</md-icon>
         </md-button>
       </div>
     </md-toolbar>
 
     <md-drawer :md-active.sync="showNavigation">
-      <div class="tap_user" md-elevation="0">
+      <div
+        class="tap_user"
+        md-elevation="0"
+      >
         <md-avatar class="md-large">
-          <img v-if='hasImage()' v-bind:src='userProfileImage' alt="People">
+          <img
+            v-if='hasImage()'
+            v-bind:src='userProfileImage'
+            alt="People"
+          >
           <span v-else>{{userName}}</span>
         </md-avatar>
         <div class='tap_user2'>
           <span class='name_user'>{{userName}}</span>
-          <span class='logout' @click='signout'>{{messages.logout}}</span>
+          <span
+            class='logout'
+            @click='signout'
+          >{{messages.logout}}</span>
           <div class='lang-container'>
-            <span v-bind:class='en' value='en' @click='changeLang'>EN</span>
+            <span
+              v-bind:class='en'
+              value='en'
+              @click='changeLang'
+            >EN</span>
             <span>|</span>
-            <span v-bind:class='th' value='th' @click='changeLang'>TH</span>
+            <span
+              v-bind:class='th'
+              value='th'
+              @click='changeLang'
+            >TH</span>
           </div>
         </div>
       </div>
@@ -34,7 +58,11 @@
     <div class='divider'></div>
 
     <div class="content">
-      <CardDeveloper v-for="developer in developers" :key="developer.name" :developer='developer' />
+      <CardDeveloper
+        v-for="developer in developers"
+        :key="developer.name"
+        :developer='developer'
+      />
     </div>
   </div>
 
@@ -105,13 +133,11 @@ export default {
     ...mapState({
 
       en: state => {
-        if (state.lang == 'en')
-          {return 'lang-active'}
+        if (state.lang == 'en') { return 'lang-active' }
         return 'lang-inactive'
       },
       th: state => {
-        if (state.lang == 'th')
-          {return 'lang-active'}
+        if (state.lang == 'th') { return 'lang-active' }
         return 'lang-inactive'
       }
 
@@ -138,11 +164,6 @@ export default {
   background: #87bcbf;
   position: relative;
   border: 1px solid rgba(#000, 0.12);
-}
-
-.md-large {
-  width: 100%;
-  height: 150px;
 }
 
 // Demo purposes only

@@ -1,16 +1,19 @@
 <template>
   <div class='container'>
     <md-card md-with-hover>
-      <md-card-media >
-        <img :src='profileImage' alt="People">
+      <md-card-media>
+        <img
+          :src='profileImage'
+          alt="People"
+        >
       </md-card-media>
-        
+
       <md-card-header>
         <div class="md-title">{{name}}</div>
         <div class="md-subhead">{{role}}</div>
       </md-card-header>
       <md-card-content>
-        
+
       </md-card-content>
     </md-card>
 
@@ -19,45 +22,48 @@
 
 <script>
 export default {
-    name: 'CardDeveloper',
-    props: ['developer'],
-    data(){
-      return {
-        name:'',
-        role:'',
-      }
-    },
-    created(){
-      this.name = this.developer.name;
-      this.role = this.developer.role;
-    },
-    computed: {
-      profileImage() {
-        return require('../../res/img/'+this.developer.profileImage)
-      }
+  name: 'CardDeveloper',
+  props: ['developer'],
+  data () {
+    return {
+      name: '',
+      role: ''
     }
+  },
+  created () {
+    this.name = this.developer.name
+    this.role = this.developer.role
+  },
+  computed: {
+    profileImage () {
+      return require('../../res/img/' + this.developer.profileImage)
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-  .md-card {
-    background-color: #fff;
-    width:100%;
-    
-      margin: 5px;
-   //height: 85%;
-    display: inline-block;
-    padding: 0%;
-    vertical-align: top;    
-    
-    }
-    .container{
-    width:45%;
-    max-width: 200px;
-    margin: 5px;
-    height: fit-content;
-    }
-    .md-title{
-      font-size: 15px;
-    }
+.md-card {
+  background-color: #fff;
+  width: 100%;
+
+  margin: 5px;
+  //height: 85%;
+  display: inline-block;
+  padding: 0%;
+  vertical-align: top;
+}
+.container {
+  width: 45%;
+  max-width: 200px;
+  margin: 5px;
+  height: fit-content;
+}
+.md-title {
+  font-size: 15px;
+}
+.md-card-media img {
+  width: 100%;
+  height: 180px;
+}
 </style>
