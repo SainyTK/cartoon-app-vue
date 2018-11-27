@@ -1,38 +1,65 @@
 <template>
   <div class="page-container md-layout-column">
     <md-toolbar class="md-primary">
-      <md-button class="md-icon-button" @click="showNavigation = true">
+      <md-button
+        class="md-icon-button"
+        @click="showNavigation = true"
+      >
         <md-icon>menu</md-icon>
       </md-button>
       <span class="md-title">{{messages.ep}} 1</span>
 
       <div class="md-toolbar-section-end">
-        <md-button class="md-icon-button" @click='toDevelopers'>
+        <md-button
+          class="md-icon-button"
+          @click='toDevelopers'
+        >
           <md-icon>group</md-icon>
         </md-button>
       </div>
     </md-toolbar>
 
     <md-drawer :md-active.sync="showNavigation">
-      <div class="tap_user" md-elevation="0">
+      <div
+        class="tap_user"
+        md-elevation="0"
+      >
         <md-avatar class="md-large">
-          <img v-if='hasImage()' v-bind:src='userProfileImage' alt="People">
+          <img
+            v-if='hasImage()'
+            v-bind:src='userProfileImage'
+            alt="People"
+          >
           <span v-else>{{userName}}</span>
         </md-avatar>
         <div class='tap_user2'>
           <span class='name_user'>{{userName}}</span>
-          <span class='logout' @click='signout'>{{messages.logout}}</span>
+          <span
+            class='logout'
+            @click='signout'
+          >{{messages.logout}}</span>
           <div class='lang-container'>
-            <span v-bind:class='en' value='en' @click='changeLang'>EN</span>
+            <span
+              v-bind:class='en'
+              value='en'
+              @click='changeLang'
+            >EN</span>
             <span>|</span>
-            <span v-bind:class='th' value='th' @click='changeLang'>TH</span>
+            <span
+              v-bind:class='th'
+              value='th'
+              @click='changeLang'
+            >TH</span>
           </div>
         </div>
 
       </div>
 
       <div class='divider2'></div>
-      <md-list v-for="n in 20" :key="n">
+      <md-list
+        v-for="n in 20"
+        :key="n"
+      >
         <md-list-item>
           <md-button @click="true">{{messages.ep}} {{n}}</md-button>
         </md-list-item>
@@ -43,6 +70,11 @@
     <div class='divider'></div>
     <md-content>
       <div class='content_ep'>
+        <img
+          v-for="item in ep"
+          :src="item.path"
+          :key="item"
+        />
       </div>
     </md-content>
   </div>
@@ -59,7 +91,12 @@ export default {
     showSidepanel: false,
     userName: '',
     userProfileImage: '',
-    ep: ''
+    ep: [
+      { path: require('../../res/img/onepiece/OnePiece01_Page_001.jpg') },
+      { path: require('../../res/img/onepiece/OnePiece01_Page_002.jpg') },
+      { path: require('../../res/img/onepiece/OnePiece01_Page_003.jpg') }
+
+    ]
   }),
   created () {
     let user = firebase.auth().currentUser
@@ -119,6 +156,7 @@ export default {
       if (state.lang == 'th') { return 'lang-active' }
       return 'lang-inactive'
     }
+
   }
 }
 </script>
@@ -157,7 +195,6 @@ export default {
   margin-left: 17px;
   margin-bottom: 20px;
   height: 100vh;
-  background: #d7e9ea;
 }
 .md-icon {
   color: #f8fafa;
@@ -215,5 +252,9 @@ export default {
 }
 .md-avatar {
   margin: 15px;
+}
+.content_ep {
+  overflow: scroll;
+  height: 85%;
 }
 </style>
