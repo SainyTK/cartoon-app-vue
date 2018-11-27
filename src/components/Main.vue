@@ -52,7 +52,7 @@
 
 <script>
 import firebase from 'firebase'
-import { mapState, mapGetters } from 'vuex'
+import { mapState, mapGetters, mapActions } from 'vuex'
 export default {
   name: 'Main',
   data: () => ({
@@ -60,15 +60,14 @@ export default {
     showSidepanel: false,
     userName: '',
     userProfileImage: '',
-    ep: '',
-    imageUrl:[]
+    ep: ''
   }),
   created () {
     let user = firebase.auth().currentUser
     this.userName = this.hasDisplayName() ? user.displayName : user.email.toUpperCase().charAt(0)
     this.userProfileImage = user.photoURL
 
-    this.loadImage()
+    this.loadCartoonImage
   },
   methods: {
     signout: function (e) {
@@ -102,17 +101,6 @@ export default {
           }
           break
       }
-    },
-    loadImage: function(){
-      const storage = firebase.storage()
-      for(let i=1;i<=20;i++){
-        let pageNum = (i+'').padStart(3,'0')
-          const pathReference = storage.refFromURL(`gs://cartoon-app-fb2f5.appspot.com/OnePice/ตอนที่ 1/OnePiece01_Page_${pageNum}.jpg`)
-          pathReference.getDownloadURL().then(url => {
-          console.log(url)
-          this.imageUrl[i-1] = url;
-        })
-      }
     }
   },
   computed: {
@@ -123,7 +111,11 @@ export default {
       lang: state => {
         console.log('lang' + state.lang)
         return state.lang
-      }
+      },
+      imageUrl: state => state.cartoonImageUrl
+    }),
+    ...mapActions({
+      loadCartoonImage: 'loadCartoonImage'
     }),
     en: state => {
       if (state.lang == 'en') { return 'lang-active' }
@@ -231,7 +223,7 @@ export default {
   margin: 15px;
 }
 .content_ep {
-  height: 90%;
+  height: 85%;
   overflow: scroll;
 }
 </style>

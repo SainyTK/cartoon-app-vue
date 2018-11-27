@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import firebase from 'firebase'
 import 'es6-promise/auto'
 import {messages} from '../res/messages'
 import {developerInfo} from '../res/developerInfo'
@@ -13,6 +14,7 @@ export default new Vuex.Store({
         password: '',
         isShowDialog: false,
         showLogin: true,
+        cartoonImageUrl: []
     },
     getters: {
         messages : state => {
@@ -50,6 +52,9 @@ export default new Vuex.Store({
         },
         toggleLogin : state => {
             state.showLogin = !state.showLogin
+        },
+        loadCartoonImage : (state,imageUrl) => {
+            state.cartoonImageUrl.push(imageUrl)
         }
     },
     actions: {
@@ -80,6 +85,16 @@ export default new Vuex.Store({
         closeDialog : context => {
             console.log(context.state.isShowDialog)
             context.commit('showDialog',false)
+        },
+        loadCartoonImage : async context => {
+            const storage = firebase.storage()
+            for(let i=1;i<=20;i++){
+                let pageNum = (i+'').padStart(3,'0')
+                const pathReference = storage.refFromURL(`gs://cartoon-app-fb2f5.appspot.com/OnePice/ตอนที่ 1/OnePiece01_Page_${pageNum}.jpg`)
+                await pathReference.getDownloadURL().then(url => {
+                context.commit('loadCartoonImage',url)
+                })
+            }
         }
     }
 })
