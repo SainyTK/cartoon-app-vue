@@ -5,7 +5,9 @@
         class="md-icon-button"
         @click="showNavigation = true"
       >
-        <md-icon>menu</md-icon>
+        <svg class="icon" viewBox="0 0 24 24">
+          <path fill="#fff" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+        </svg>
       </md-button>
       <span class="md-title">{{messages.developer}}</span>
 
@@ -14,7 +16,9 @@
           class="md-icon-button"
           @click='toHome'
         >
-          <md-icon>home</md-icon>
+          <svg class="icon" viewBox="0 0 24 24">
+            <path fill="#fff" d="M16,13C15.71,13 15.38,13 15.03,13.05C16.19,13.89 17,15 17,16.5V19H23V16.5C23,14.17 18.33,13 16,13M8,13C5.67,13 1,14.17 1,16.5V19H15V16.5C15,14.17 10.33,13 8,13M8,11A3,3 0 0,0 11,8A3,3 0 0,0 8,5A3,3 0 0,0 5,8A3,3 0 0,0 8,11M16,11A3,3 0 0,0 19,8A3,3 0 0,0 16,5A3,3 0 0,0 13,8A3,3 0 0,0 16,11Z" />
+          </svg>
         </md-button>
       </div>
     </md-toolbar>
@@ -53,6 +57,7 @@
           </div>
         </div>
       </div>
+        <div class='divider2'></div>
     </md-drawer>
 
     <div class='divider'></div>
@@ -183,6 +188,10 @@ export default {
 }
 .md-icon {
   color: #f8fafa;
+}
+.icon{
+    width: 24px;
+    height: 24px;
 }
 .md-title {
   color: #f8fafa;

@@ -16,7 +16,8 @@ export const messages = {
     confirmPassword: 'Comfirm Password',
     signUp: 'Sign Up',
     ep: 'Episode',
-    developer: 'Developer'
+    developer: 'Developer',
+    home: 'Home'
   },
   th: {
     email: 'อีเมลล์',
@@ -35,6 +36,7 @@ export const messages = {
     confirmPassword: 'ยืนยันรหัสผ่าน',
     signUp: 'สมัครสมาชิก',
     ep: 'ตอนที่',
-    developer: 'ทีมผู้พัฒนา'
+    developer: 'ทีมผู้พัฒนา',
+    home: 'หน้าหลัก'
   }
 }

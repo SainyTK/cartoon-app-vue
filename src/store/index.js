@@ -14,7 +14,8 @@ export default new Vuex.Store({
         password: '',
         isShowDialog: false,
         showLogin: true,
-        cartoonImageUrl: []
+        cartoonImageUrl: [],
+        currentEp: 1
     },
     getters: {
         messages : state => {
@@ -35,6 +36,9 @@ export default new Vuex.Store({
         }
     },
     mutations: {
+        changeEp : (state, ep) => {
+            state.currentEp = ep
+        },
         toThai : state => {
             state.lang = 'th'
         },
@@ -55,9 +59,16 @@ export default new Vuex.Store({
         },
         loadCartoonImage : (state,imageUrl) => {
             state.cartoonImageUrl.push(imageUrl)
+        },
+        clearCartoonImage : state => {
+            state.cartoonImageUrl = []
         }
     },
     actions: {
+        changeEp: (context, ep) => {
+            context.commit('changeEp',ep)
+            // console.log(ep)
+        },
         toThai : context => {
             context.commit('toThai')
         },
@@ -89,8 +100,8 @@ export default new Vuex.Store({
         loadCartoonImage : async context => {
             const storage = firebase.storage()
             for(let i=1;i<=20;i++){
-                let pageNum = (i+'').padStart(3,'0')
-                const pathReference = storage.refFromURL(`gs://cartoon-app-fb2f5.appspot.com/OnePice/ตอนที่ 1/OnePiece01_Page_${pageNum}.jpg`)
+                let ep = context.state.currentEp
+                const pathReference = storage.refFromURL(`gs://cartoon-app-fb2f5.appspot.com/OnePice/Ep.${ep}/${i}.jpg`)
                 await pathReference.getDownloadURL().then(url => {
                 context.commit('loadCartoonImage',url)
                 })

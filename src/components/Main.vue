@@ -1,10 +1,15 @@
 <template>
   <div class="page-container md-layout-column">
     <md-toolbar class="md-primary">
-      <svg class="icon" viewBox="0 0 24 24" @click='showNavigation = true'>
+      <md-button
+        class="md-icon-button"
+        @click="showNavigation = true"
+      >
+      <svg class="icon" viewBox="0 0 24 24">
         <path fill="#fff" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
       </svg>
-      <span class="md-title">{{messages.ep}} 1</span>
+      </md-button>
+      <span class="md-title">{{messages.home}}</span>
 
       <div class="md-toolbar-section-end">
         <md-button class="md-icon-button" @click='toDevelopers'>
@@ -34,12 +39,6 @@
       </div>
 
       <div class='divider2'></div>
-      <md-list v-for="n in 20" :key="n">
-        <md-list-item>
-          <md-button @click="true">{{messages.ep}} {{n}}</md-button>
-        </md-list-item>
-        <div class='divider3'></div>
-      </md-list>
     </md-drawer>
 
     <div class='divider'></div>
@@ -61,15 +60,14 @@ export default {
     showNavigation: false,
     showSidepanel: false,
     userName: '',
-    userProfileImage: '',
-    ep: ''
+    userProfileImage: ''
   }),
   created () {
     let user = firebase.auth().currentUser
     this.userName = this.hasDisplayName() ? user.displayName : user.email.toUpperCase().charAt(0)
     this.userProfileImage = user.photoURL
 
-    this.loadCartoonImage
+    this.loadCartoonImage()
   },
   methods: {
     signout: function (e) {
@@ -103,6 +101,14 @@ export default {
           }
           break
       }
+    },
+    changeEp: function(ep,e){
+      this.$store.dispatch('changeEp',ep)
+      this.showNavigation = false
+      this.loadCartoonImage()
+    },
+    loadCartoonImage: function(){
+      this.$store.dispatch('loadCartoonImage')
     }
   },
   computed: {
@@ -114,10 +120,8 @@ export default {
         console.log('lang' + state.lang)
         return state.lang
       },
-      imageUrl: state => state.cartoonImageUrl
-    }),
-    ...mapActions({
-      loadCartoonImage: 'loadCartoonImage'
+      imageUrl: state => state.cartoonImageUrl,
+      currentEp : state => state.currentEp
     }),
     en: state => {
       if (state.lang == 'en') { return 'lang-active' }
